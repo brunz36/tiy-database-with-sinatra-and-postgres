@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Iron Yard Employee Information</title>
+  <title>The Iron Yard Employee Information -- Search Results</title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -40,26 +40,51 @@
       </div>
     </nav>
 
-    <% @employees.each do |employee| %>
-      <div class="panel panel-default">
+      <!-- <div class="panel panel-default">
         <div class="panel-heading">Employee Information</div>
         <div class="panel-body">
           <ul class="list-group">
-            <li class="list-group-item lead"><strong>Name: </strong><%= employee["name"] %></li>
+            <% @employees.each do |employee| %>
+            <li class="list-group-item"><a href="/show_employee?id=<%= employee['id'] %>"><strong>Name: </strong><%= employee["name"] %></a></li>
             <li class="list-group-item"><strong>Phone: </strong><%= employee["phone"] %></li>
             <li class="list-group-item"><strong>Address: </strong><%= employee["address"] %></li>
             <li class="list-group-item"><strong>Position: </strong><%= employee["position"] %></li>
             <li class="list-group-item"><strong>Salary: </strong><%= employee["salary"] %></li>
             <li class="list-group-item"><strong>GitHub Account: </strong><%= employee["github"] %></li>
             <li class="list-group-item"><strong>Slack Account: </strong><%= employee["slack"] %></li>
+            <br>
+            <% end %>
           </ul>
         </div>
-        <div class="panel-footer">
-          <a class="btn btn-default" href="#" role="button">Edit <%= employee["name"] %> Information</a>
-        </div>
-      </div>
-    <% end %>
+      </div> -->
 
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>GitHub Account</th>
+            <th>Slack Account</th>
+          </thead>
+          <tbody>
+            <% @employees.each do |employee| %>
+              <tr>
+                <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["name"] %></a></td>
+                <td><%= employee["phone"] %></td>
+                <td><%= employee["address"] %></td>
+                <td><%= employee["position"] %></td>
+                <td><%= employee["salary"] %></td>
+                <td><%= employee["github"] %></td>
+                <td><%= employee["slack"] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -59,5 +59,5 @@ get '/search_employee' do
   @employees = employees_database.exec("SELECT * FROM employees WHERE slack = '#{search}' or github = '#{search}' or name LIKE '%#{search}%';")
   # @employees = employees_database.exec("SELECT * FROM employees WHERE name LIKE '%#{search}%';")
 
-  erb :show_employee
+  erb :search_employee
 end
