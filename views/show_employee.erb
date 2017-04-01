@@ -56,6 +56,7 @@
         </div>
         <div class="panel-footer">
           <a class="btn btn-default" href="/edit_employee?id=<%= employee['id'] %>" role="button">Edit <%= employee["name"] %> Information</a>
+          <a class="btn btn-default pull-right" href="/delete_employee?id=<%= employee['id'] %>" role="button">Delete <%= employee["name"] %> Information</a>
         </div>
       </div>
     <% end %>

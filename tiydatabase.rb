@@ -83,10 +83,21 @@ get '/append_employee' do
   github = params["github"]
   slack = params["slack"]
 
-  # if salary == ""
-  #   redirect to ('/employees')
-  # else
   employees_database.exec("UPDATE employees SET name = $1, phone = $2, address = $3, position = $4, salary = $5, github = $6, slack = $7 WHERE id = $8", [name, phone, address, position, salary, github, slack, id])
-  redirect to ('/')
-  # end
+
+  @employees = employees_database.exec("select * from employees where id = $1", [id])
+
+  erb :show_employee
+
+end
+
+get '/delete_employee' do
+  employees_database = PG.connect(dbname: "tiy_database")
+
+  id = params["id"]
+
+  employees_database.exec("DELETE FROM employees WHERE id = $1", [id])
+
+  redirect to ('/employees')
+
 end
