@@ -57,7 +57,36 @@ get '/search_employee' do
   search = params["search"]
 
   @employees = employees_database.exec("SELECT * FROM employees WHERE slack = '#{search}' or github = '#{search}' or name LIKE '%#{search}%';")
-  # @employees = employees_database.exec("SELECT * FROM employees WHERE name LIKE '%#{search}%';")
 
   erb :search_employee
+end
+
+get '/edit_employee' do
+  employees_database = PG.connect(dbname: "tiy_database")
+
+  id = params["id"]
+
+  @employees = employees_database.exec("select * from employees where id = $1", [id])
+
+  erb :edit_employee
+end
+
+get '/append_employee' do
+  employees_database = PG.connect(dbname: "tiy_database")
+
+  id = params["id"]
+  name = params["name"]
+  phone = params["phone"]
+  address = params["address"]
+  position = params["position"]
+  salary = params["salary"]
+  github = params["github"]
+  slack = params["slack"]
+
+  # if salary == ""
+  #   redirect to ('/employees')
+  # else
+  employees_database.exec("UPDATE employees SET name = $1, phone = $2, address = $3, position = $4, salary = $5, github = $6, slack = $7 WHERE id = $8", [name, phone, address, position, salary, github, slack, id])
+  redirect to ('/')
+  # end
 end

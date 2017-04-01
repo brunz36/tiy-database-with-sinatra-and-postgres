@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TIYD -- New Employee Form</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="screen.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid tiy_nav">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/">
+          <img src="/tiy_logo_1.png" alt="The Iron Yard Logo" height=50 width=50>
+          </a>
+          <span class="lead text-uppercase text-center">Database</span>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav navbar-right">
+          <li>
+              <a href="/employees">Employees</a>
+          </li>
+        </div>
+      </div>
+    </nav>
+
+    <div class="well well-md">
+      <h3>Edit Employee Form</h3>
+    </div>
+
+    <% @employees.each do |employee| %>
+      <form class="form-horizontal" action="/append_employee">
+        <input type="hidden" class="form-control" name="id" value="<%= employee["id"] %>">
+      <div class="form-group">
+        <label for="input_name" class="col-sm-2 control-label">Name:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="name" value="<%= employee["name"] %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input_phone" class="col-sm-2 control-label">Phone Number:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="phone" value="<%= employee["phone"] %>" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input_address" class="col-sm-2 control-label">Address:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="address" value="<%= employee["address"] %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input_position" class="col-sm-2 control-label">Position:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="position" value="<%= employee["position"] %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input_salary" class="col-sm-2 control-label">Salary:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="salary" value="<%= employee["salary"] %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input_github" class="col-sm-2 control-label">GitHub Account:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="github" value="<%= employee["github"] %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input_slack" class="col-sm-2 control-label">Slack Account:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="slack" value="<%= employee["slack"] %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Submit <%= employee["name"] %> New Information</button>
+        </div>
+      </div>
+    </form>
+    <% end %>
+
+  </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+
+</html>
