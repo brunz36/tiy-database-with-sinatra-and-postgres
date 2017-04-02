@@ -24,6 +24,8 @@ get '/show_employee' do
 
   @employees = employees_database.exec("select * from employees where id = $1", [id])
 
+  employee = @employees.first
+
   erb :show_employee
 end
 
@@ -57,6 +59,8 @@ get '/search_employee' do
   search = params["search"]
 
   @employees = employees_database.exec("SELECT * FROM employees WHERE slack = $1 or github = $1 or name LIKE '%#{search}%';", [search])
+
+  employee = @employees.first
 
   erb :search_employee
 end

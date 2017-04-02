@@ -40,24 +40,6 @@
       </div>
     </nav>
 
-      <!-- <div class="panel panel-default">
-        <div class="panel-heading">Employee Information</div>
-        <div class="panel-body">
-          <ul class="list-group">
-            <% @employees.each do |employee| %>
-            <li class="list-group-item"><a href="/show_employee?id=<%= employee['id'] %>"><strong>Name: </strong><%= employee["name"] %></a></li>
-            <li class="list-group-item"><strong>Phone: </strong><%= employee["phone"] %></li>
-            <li class="list-group-item"><strong>Address: </strong><%= employee["address"] %></li>
-            <li class="list-group-item"><strong>Position: </strong><%= employee["position"] %></li>
-            <li class="list-group-item"><strong>Salary: </strong><%= employee["salary"] %></li>
-            <li class="list-group-item"><strong>GitHub Account: </strong><%= employee["github"] %></li>
-            <li class="list-group-item"><strong>Slack Account: </strong><%= employee["slack"] %></li>
-            <br>
-            <% end %>
-          </ul>
-        </div>
-      </div> -->
-
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
@@ -70,21 +52,21 @@
             <th>Slack Account</th>
           </thead>
           <tbody>
-            <% @employees.each do |employee| %>
+            <!-- <% @employees.each do |employee| %> -->
               <tr>
                 <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["name"] %></a></td>
-                <td><%= employee["phone"] %></td>
-                <td><%= employee["address"] %></td>
-                <td><%= employee["position"] %></td>
-                <td><%= employee["salary"] %></td>
-                <td><%= employee["github"] %></td>
-                <td><%= employee["slack"] %></td>
+                <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["phone"] %></td>
+                <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["address"] %></td>
+                <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["position"] %></td>
+                <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["salary"] %></td>
+                <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["github"] %></td>
+                <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["slack"] %></td>
               </tr>
-            <% end %>
+            <!-- <% end %> -->
           </tbody>
         </table>
       </div>
-      
+
   </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

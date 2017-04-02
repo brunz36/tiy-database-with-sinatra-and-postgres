@@ -72,12 +72,12 @@
           <% @employees.each do |employee| %>
             <tr>
               <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["name"] %></a></td>
-              <td><%= employee["phone"] %></td>
-              <td><%= employee["address"] %></td>
-              <td><%= employee["position"] %></td>
-              <td><%= employee["salary"] %></td>
-              <td><%= employee["github"] %></td>
-              <td><%= employee["slack"] %></td>
+              <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["phone"] %></td>
+              <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["address"] %></td>
+              <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["position"] %></td>
+              <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["salary"] %></td>
+              <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["github"] %></td>
+              <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["slack"] %></td>
             </tr>
           <% end %>
         </tbody>
