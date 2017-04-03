@@ -36,6 +36,9 @@
           <li>
               <a href="/employees">Employees</a>
           </li>
+          <li>
+            <a href="/courses">Courses</a>
+          </li>
         </div>
       </div>
     </nav>
@@ -52,7 +55,7 @@
             <th>Slack Account</th>
           </thead>
           <tbody>
-            <!-- <% @employees.each do |employee| %> -->
+            <% @employees.each do |employee| %>
               <tr>
                 <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["name"] %></a></td>
                 <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["phone"] %></td>
@@ -62,7 +65,7 @@
                 <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["github"] %></td>
                 <td><a href="/show_employee?id=<%= employee['id'] %>"><%= employee["slack"] %></td>
               </tr>
-            <!-- <% end %> -->
+            <% end %>
           </tbody>
         </table>
       </div>

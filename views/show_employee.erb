@@ -36,11 +36,14 @@
           <li>
               <a href="/employees">Employees</a>
           </li>
+          <li>
+            <a href="/courses">Courses</a>
+          </li>
         </div>
       </div>
     </nav>
 
-    <!-- <% @employees.each do |employee| %> -->
+    <% @employees.each do |employee| %>
       <div class="panel panel-default">
         <div class="panel-heading">Employee Information</div>
         <div class="panel-body">
@@ -59,7 +62,7 @@
           <a class="btn btn-default pull-right" href="/delete_employee?id=<%= employee['id'] %>" role="button">Delete <%= employee["name"] %> Information</a>
         </div>
       </div>
-    <!-- <% end %> -->
+    <% end %>
 
   </div>
 

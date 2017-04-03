@@ -43,22 +43,42 @@
       </div>
     </nav>
 
-    <div class="jumbotron">
-      <div class="media">
-        <div class="media-body">
-          <h1 class="media-heading">The Iron Yard Database</h1>
-          <p><span class="glyphicon glyphicon-fire" aria-hidden="true"></span><small> For the Employees of <strong>The Iron Yard </strong></small><span class="glyphicon glyphicon-fire" aria-hidden="true"></span></p>
-        </div>
-        <div class="media-right media-middle">
-          <img class="img-rounded jumbo_img" src="tiy_logo_1.png" alt="Olympic Hurdling" width="160" height="160">
-        </div>
+    <div class="media">
+      <div class="media-body">
+        <h1><strong>The Iron Yard</strong> Courses Database List</h1>
+      </div>
+      <div class="media-right media-middle">
+        <a href="/new_course" class="btn btn-md btn-default" role="button">Add New Course</a>
       </div>
     </div>
 
-    <div class="well container-fluid col-md-6 col-md-offset-3">
-      <blockquote>
-        This a student maintained database of <strong>The Iron Yard</strong> employees and courses. In this site the administrator will be able to add and delete employees and courses from a database. The database is also searchable and appendable.
-      </blockquote>
+    <form class="form-inline well well-sm" action="/search_course">
+      <div class="form-group">
+        <span><strong>Search for Course by Name </strong></span>
+        <input type="search" class="form-control" name="search" placeholder="Search">
+         <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <th>Name</th>
+          <th>Programming Languages</th>
+          <th>Price</th>
+          <th>Cohort Number</th>
+        </thead>
+        <tbody>
+          <% @courses.each do |course| %>
+            <tr>
+              <td><a href="/show_course?id=<%= course['id'] %>"><%= course["name"] %></a></td>
+              <td><%= course["language"] %></td>
+              <td><%= course["price"] %></td>
+              <td><%= course["cohort"] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
 
   </div>
@@ -67,6 +87,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</body>
+  </body>
 
 </html>

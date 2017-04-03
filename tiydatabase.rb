@@ -24,8 +24,6 @@ get '/show_employee' do
 
   @employees = employees_database.exec("select * from employees where id = $1", [id])
 
-  employee = @employees.first
-
   erb :show_employee
 end
 
@@ -60,8 +58,6 @@ get '/search_employee' do
 
   @employees = employees_database.exec("SELECT * FROM employees WHERE slack = $1 or github = $1 or name LIKE '%#{search}%';", [search])
 
-  employee = @employees.first
-
   erb :search_employee
 end
 
@@ -92,7 +88,6 @@ get '/append_employee' do
   @employees = employees_database.exec("select * from employees where id = $1", [id])
 
   erb :show_employee
-
 end
 
 get '/delete_employee' do
@@ -103,5 +98,91 @@ get '/delete_employee' do
   employees_database.exec("DELETE FROM employees WHERE id = $1", [id])
 
   redirect to ('/employees')
+
+end
+
+get '/courses' do
+  courses_database = PG.connect(dbname: "tiy_database")
+
+  @courses = courses_database.exec("select * from courses")
+
+  erb :courses
+end
+
+get '/show_course' do
+  courses_database = PG.connect(dbname: "tiy_database")
+
+  id = params["id"]
+
+  @courses = courses_database.exec("select * from courses where id = $1", [id])
+
+  erb :show_course
+end
+
+get '/search_course' do
+  courses_database = PG.connect(dbname: "tiy_database")
+
+  search = params["search"]
+
+  @courses = courses_database.exec("SELECT * FROM courses WHERE name LIKE '%#{search}%'")
+
+  erb :search_course
+end
+
+get '/new_course' do
+
+  erb :new_course
+end
+
+get '/add_course' do
+  courses_database = PG.connect(dbname: "tiy_database")
+
+  name = params["name"]
+  language = params["language"]
+  price = params["price"]
+  cohort = params["cohort"]
+
+  if price == ""
+    redirect to ('/courses')
+  else
+    courses_database.exec("INSERT INTO courses(name, language, price, cohort) VALUES ($1, $2, $3, $4)", [name, language, price, cohort])
+    redirect to ('/')
+  end
+end
+
+get '/edit_course' do
+  courses_database = PG.connect(dbname: "tiy_database")
+
+  id = params["id"]
+
+  @courses = courses_database.exec("select * from courses where id = $1", [id])
+
+  erb :edit_course
+end
+
+get '/append_course' do
+  courses_database = PG.connect(dbname: "tiy_database")
+
+  id = params["id"]
+  name = params["name"]
+  language = params["language"]
+  price = params["price"]
+  cohort = params["cohort"]
+
+  courses_database.exec("UPDATE courses SET name = $1, language = $2, price = $3, cohort = $4 WHERE id = $5", [name, language, price, cohort, id])
+
+  @courses = courses_database.exec("select * from courses where id = $1", [id])
+
+  erb :show_course
+end
+
+get '/delete_course' do
+  courses_database = PG.connect(dbname: "tiy_database")
+
+  id = params["id"]
+
+  courses_database.exec("DELETE FROM courses WHERE id = $1", [id])
+
+  redirect to ('/courses')
 
 end
